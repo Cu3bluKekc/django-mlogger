@@ -2,10 +2,11 @@
 # (c) 2009-2010 Ruslan Popov <ruslan.popov@gmail.com>
 # (c) 2010 Maxim M. <shamanu4@gmail.com>
 
-from django.utils import simplejson, datetime_safe
-import time, datetime
+import json
+import datetime
 
-class DatetimeJSONEncoder(simplejson.JSONEncoder):
+
+class DatetimeJSONEncoder(json.JSONEncoder):
 
     def default(self, o):
         if isinstance(o, datetime.datetime):

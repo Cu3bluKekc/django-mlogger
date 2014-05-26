@@ -4,7 +4,7 @@
 
 from django.conf import settings
 from django.db import models
-from django.utils import simplejson
+import json
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
@@ -39,7 +39,7 @@ def logging_abstract(instance, action, **kwargs):
             continue
         data.update( {i: instance.__dict__[i]} )
 
-    response = simplejson.dumps(data, cls=DatetimeJSONEncoder)
+    response = json.dumps(data, cls=DatetimeJSONEncoder)
     content_type = ContentType.objects.get_for_model(instance)
     log = Log(content_type=content_type, data=response, action=action, oid=instance.pk,
               user=settings.CURRENT_USER)
