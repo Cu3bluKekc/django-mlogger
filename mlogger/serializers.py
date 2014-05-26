@@ -19,4 +19,3 @@ class DatetimeJSONEncoder(json.JSONEncoder):
             return o.__unicode__()
         else:
             return super(DatetimeJSONEncoder, self).default(o)
-

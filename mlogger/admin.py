@@ -25,9 +25,9 @@ class LogAdmin(admin.ModelAdmin):
         url = u'#'
         if object.action in ('create', 'update'):
             try:
-                url = reverse('admin:{app_label}_{model}_change'.\
-                        format(app_label=app_label,
-                               model=model), args=[oid])
+                url = reverse('admin:{app_label}_{model}_change'.
+                              format(app_label=app_label,
+                                     model=model), args=[oid])
             except:
                 pass
         return u'<a href="{url}">{text}</a>'.format(url=url, text=text)
@@ -36,7 +36,7 @@ class LogAdmin(admin.ModelAdmin):
 
     def _data(self, object):
         data = loads(object.data).items()
-        return mark_safe('<ul>%s</ul>' % ''.\
+        return mark_safe('<ul>%s</ul>' % ''.
                          join(['<li>%s: %s</li>' % (k, v, ) for k, v in data]))
     _data.allow_tags = True
     _data.short_description = _('Data')
